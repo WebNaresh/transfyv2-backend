@@ -14,5 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/route", route);
 app.use("/message", route2);
 app.use(error);
+console.log("hello");
 module.exports = app;
 // npm i express cookie-parser body-parser bcryptjs
