@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { default: isEmail } = require("validator/lib/isemail");
 const User = new mongoose.Schema({
   name: {
     type: String,
@@ -14,7 +13,6 @@ const User = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Please Enter E-mail"],
-    validate: [isEmail, "Please fill a valid email address"],
   },
   userImage: {
     type: String,
