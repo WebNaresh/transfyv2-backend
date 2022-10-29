@@ -30,7 +30,7 @@ global.onlineUsers = new Map();
 io.on("connect", (socket) => {
   socket.emit("hello", "ok");
   socket.on("hello", (arg) => {
-    console.log(arg); // world
+    console.log(arg); // hello world
   });
   // global.chatSocket = socket;
   socket.on("add-user", (userId) => {
@@ -58,3 +58,7 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+setInterval(() => {
+  console.log(global.onlineUsers);
+}, 2000);

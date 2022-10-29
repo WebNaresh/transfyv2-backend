@@ -18,6 +18,10 @@ const User = new mongoose.Schema({
     type: String,
     required: true,
   },
+  greetings: {
+    type: String,
+    default: "Say Hello to ",
+  },
 });
 
 // User.pre("save", async function (next) {

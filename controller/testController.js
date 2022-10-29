@@ -40,10 +40,10 @@ exports.getAllUser = catchAssyncError(async (req, res, next) => {
     "_id",
   ]);
   console.log(userId);
-  users.filter((data) => {
-    console.log(data._id);
-    return data._id.toString() !== userId;
-  });
+  // users.filter((data) => {
+  //   console.log(data._id);
+  //   return data._id.toString() !== userId;
+  // });
   console.log(users, "hello");
 
   users = jwt.sign({ users }, process.env.jWT_SECRETE, {
