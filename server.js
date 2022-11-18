@@ -17,7 +17,7 @@ const users = [{}];
 // socket io connection
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://iamnaresh.netlify.app"],
     credentials: true,
   },
 });
