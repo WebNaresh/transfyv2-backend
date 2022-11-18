@@ -8,19 +8,22 @@ const User = new mongoose.Schema({
     required: [true, "Please Enter Your name"],
     maxLength: [30, "name cannot exceed 30 characters"],
     minLength: [4, "name should have more than 4 characters"],
-    unique: true,
   },
   email: {
     type: String,
     required: [true, "Please Enter E-mail"],
   },
-  userImage: {
+  avatar: {
     type: String,
     required: true,
   },
   greetings: {
     type: String,
     default: "Say Hello to ",
+  },
+  status: {
+    type: Boolean,
+    default: false,
   },
 });
 

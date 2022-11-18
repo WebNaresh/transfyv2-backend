@@ -11,7 +11,7 @@ exports.test = catchAssyncError(async (req, res, next) => {
 });
 
 exports.register = catchAssyncError(async (req, res, next) => {
-  const { name, email, userImage } = req.body;
+  const { name, email, avatar } = req.body;
   const existed = await User.find({ name, email }).populate("name");
 
   if (existed.length === 1) {
@@ -20,7 +20,7 @@ exports.register = catchAssyncError(async (req, res, next) => {
     const user = await User.create({
       name,
       email,
-      userImage,
+      avatar,
     });
     sendToken(user, res, 200);
   }
@@ -30,21 +30,18 @@ exports.register = catchAssyncError(async (req, res, next) => {
 exports.getAllUser = catchAssyncError(async (req, res, next) => {
   const { userId } = req.body;
   if (userId === undefined) {
-    console.log("i am undefinde");
     return next(new ErrorHandler("provide Id", 400));
   }
   let users = await User.find({ _id: { $ne: userId } }).select([
     "name",
     "email",
-    "userImage",
+    "avatar",
     "_id",
+    "status",
   ]);
-  console.log(userId);
   // users.filter((data) => {
-  //   console.log(data._id);
   //   return data._id.toString() !== userId;
   // });
-  console.log(users, "hello");
 
   users = jwt.sign({ users }, process.env.jWT_SECRETE, {
     expiresIn: process.env.JWT_EXPIRE,
