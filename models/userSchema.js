@@ -25,6 +25,10 @@ const User = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  notification: {
+    type: Number,
+    default: 0,
+  },
 });
 
 // User.pre("save", async function (next) {

@@ -38,6 +38,7 @@ exports.getAllUser = catchAssyncError(async (req, res, next) => {
     "avatar",
     "_id",
     "status",
+    "notification",
   ]);
   // users.filter((data) => {
   //   return data._id.toString() !== userId;
