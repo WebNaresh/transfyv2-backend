@@ -2,7 +2,12 @@ const app = require("./app");
 const connectDatabase = require("./config/database");
 const dotenv = require("dotenv");
 const socketIo = require("socket.io");
-const { addUser, sendMsg, disconnect } = require("./socket/msgReciever");
+const {
+  addUser,
+  sendMsg,
+  disconnect,
+  userRemoceFromOnlineUser,
+} = require("./socket/msgReciever");
 // Handling Uncaught Exception
 // process.on("uncaughtException", (err) => {
 //   process.exit(1);
@@ -26,13 +31,17 @@ const io = socketIo(server, {
 io.on("connect", (socket) => {
   module.exports = socket;
   socket.on("add", (userId) => {
-    addUser(socket, userId);
+    addUser(socket, userId, io);
   });
   socket.on("send-msg", (data) => {
     sendMsg(socket, io, data);
   });
-  socket.on("disconnect", (value, v) => {
+  socket.on("disconnect", (data) => {
     disconnect(socket);
+  });
+
+  socket.on("dis", (socketId) => {
+    userRemoceFromOnlineUser(socketId, io, socket);
   });
 });
 
