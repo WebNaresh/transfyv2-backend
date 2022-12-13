@@ -7,6 +7,8 @@ const {
   sendMsg,
   disconnect,
   userRemoceFromOnlineUser,
+  handlePeerSocketConnection,
+  searchPeerIdFromMap,
 } = require("./socket/msgReciever");
 // Handling Uncaught Exception
 // process.on("uncaughtException", (err) => {
@@ -42,6 +44,12 @@ io.on("connect", (socket) => {
 
   socket.on("dis", (socketId) => {
     userRemoceFromOnlineUser(socketId, io, socket);
+  });
+  socket.on("peerConnection", ({ userId, peerIdI }) => {
+    handlePeerSocketConnection(userId, peerIdI);
+  });
+  socket.on("getPeerId", (id) => {
+    searchPeerIdFromMap(id, socket);
   });
 });
 

@@ -20,7 +20,7 @@ const Message = new mongoose.Schema(
     },
     seen: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
